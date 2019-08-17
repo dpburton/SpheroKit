@@ -38,10 +38,10 @@
 		489CB1AB23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */; };
 		489CB1AD23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */; };
 		489CB1AE23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */; };
-		489CB1B0230862F900C5FA87 /* SPKBB8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKBB8.swift */; };
-		489CB1B1230862F900C5FA87 /* SPKBB8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKBB8.swift */; };
-		489CB1B32308671B00C5FA87 /* SPKCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B22308671B00C5FA87 /* SPKCentralManager.swift */; };
-		489CB1B42308671B00C5FA87 /* SPKCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B22308671B00C5FA87 /* SPKCentralManager.swift */; };
+		489CB1B0230862F900C5FA87 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
+		489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
+		489CB1B62308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
+		489CB1B72308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,8 +185,8 @@
 		489CB1A623085E5500C5FA87 /* SPKCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKCharacteristic.swift; sourceTree = "<group>"; };
 		489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKCentralManagerDelegate.swift; sourceTree = "<group>"; };
 		489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKPeripheralDelegate.swift; sourceTree = "<group>"; };
-		489CB1AF230862F900C5FA87 /* SPKBB8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKBB8.swift; sourceTree = "<group>"; };
-		489CB1B22308671B00C5FA87 /* SPKCentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKCentralManager.swift; sourceTree = "<group>"; };
+		489CB1AF230862F900C5FA87 /* SPKRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobot.swift; sourceTree = "<group>"; };
+		489CB1B52308A70500C5FA87 /* SPKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,8 +407,8 @@
 				489CB1A623085E5500C5FA87 /* SPKCharacteristic.swift */,
 				489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */,
 				489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */,
-				489CB1AF230862F900C5FA87 /* SPKBB8.swift */,
-				489CB1B22308671B00C5FA87 /* SPKCentralManager.swift */,
+				489CB1AF230862F900C5FA87 /* SPKRobot.swift */,
+				489CB1B52308A70500C5FA87 /* SPKManager.swift */,
 			);
 			path = "SpheroKit Shared";
 			sourceTree = "<group>";
@@ -829,11 +829,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				489CB1A723085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
-				489CB1B0230862F900C5FA87 /* SPKBB8.swift in Sources */,
-				489CB1B32308671B00C5FA87 /* SPKCentralManager.swift in Sources */,
+				489CB1B0230862F900C5FA87 /* SPKRobot.swift in Sources */,
 				489CB1AA23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AD23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A423085D0600C5FA87 /* SPKService.swift in Sources */,
+				489CB1B62308A70500C5FA87 /* SPKManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,11 +850,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				489CB1A823085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
-				489CB1B1230862F900C5FA87 /* SPKBB8.swift in Sources */,
-				489CB1B42308671B00C5FA87 /* SPKCentralManager.swift in Sources */,
+				489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */,
 				489CB1AB23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AE23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A523085D0600C5FA87 /* SPKService.swift in Sources */,
+				489CB1B72308A70500C5FA87 /* SPKManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,7 +995,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "OSX Example/OSX_Example.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1070,7 +1069,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "OSX Example/OSX_Example.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

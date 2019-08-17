@@ -15,7 +15,7 @@ enum SPKCharacteristic {
     static let AntiDoS = CBUUID(string: "22bb746f-2bbd-7554-2d6f-726568705327")
     
     // RobotControl service
-    static let Commands = CBUUID(string: "22bb746f-2ba1-7554-2d6f-726568705327")
+    static let Command = CBUUID(string: "22bb746f-2ba1-7554-2d6f-726568705327")
     static let Response = CBUUID(string: "22bb746f-2ba6-7554-2d6f-726568705327")
 }
 

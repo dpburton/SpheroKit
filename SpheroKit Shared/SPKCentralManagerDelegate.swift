@@ -10,28 +10,45 @@ import CoreBluetooth
 
 class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     
+    var knownRobots = [UUID:SPKRobot]()
+    var foundPeripheral: ((CBPeripheral) -> Void)
+    lazy var peripheralDelegate = SPKPeripheralDelegate()
+    
+    init(foundPeripheral: @escaping (CBPeripheral) -> Void) {
+        self.foundPeripheral = foundPeripheral
+    }
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .unknown:
+            break
+        case .resetting:
+            break
+        case .unsupported:
+            break
+        case .unauthorized:
+            break
+        case .poweredOff:
+//            central.stopScan()
+            break
+        case .poweredOn:
+            central.scanForPeripherals(withServices: [SPKService.RobotControl], options: nil)
+        @unknown default:
+            print("central.state is \(central.state)")
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        foundPeripheral(peripheral)
+        // hmm maybe I don't want to connect here
+        central.connect(peripheral, options: nil)
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        peripheral.delegate = peripheralDelegate
+        peripheral.discoverServices([SPKService.BLEService, SPKService.RobotControl])
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
     }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        guard let value = characteristic.value else { return }
-        let v = value as NSData
-        print(v.description)
-    }
-
 }
