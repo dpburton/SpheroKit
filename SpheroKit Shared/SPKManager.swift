@@ -8,9 +8,20 @@
 import Foundation
 import CoreBluetooth
 
+/**
+ Sphero Kit Manager
+ 
+ Use the sharedInstance rather than creating an object of this class
+ This class is used to get a list of known robots
+ */
 public class SPKManager {
-    var knownRobotsChanged: (() -> Void)?
+    /// use this instead of creating your own instance of this class
+    public static let sharedInstance = SPKManager()
+
+    /// a dictionary of known Sphero Kit robots
     public var knownRobots = [UUID:SPKRobot]()
+
+    var knownRobotsChanged: (() -> Void)?
     lazy var centralManagerDelegate = SPKCentralManagerDelegate(foundPeripheral: {[weak self] peripheral in
         
             var robot = SPKRobot(peripheral: peripheral)
@@ -19,12 +30,21 @@ public class SPKManager {
         })
     lazy var centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: nil)
     
-    public static let sharedInstance = SPKManager()
-
+    /**
+     Until you scan for robots the list of known robots will be empty
+     - parameter knownRobotsChanged: this is called when a robot is added or removed from the list of known robots
+    */
     public func scanForRobots(knownRobotsChanged: @escaping () -> Void )
     {
         self.knownRobotsChanged = knownRobotsChanged
         _ = centralManager
+    }
+    
+    /**
+        Call when you no longer need to find new robots
+     */
+    public func stopScanning() {
+        centralManager.stopScan()
     }
     
     func foundRobot(peripheral: CBPeripheral) {
