@@ -58,7 +58,14 @@ class ViewController: NSViewController {
     }
     
     func updateColor()  {
-        colorWell.color = NSColor(deviceRed: CGFloat(redSlider.intValue) / 255.0, green: CGFloat(greenSlider.intValue) / 255.0, blue: CGFloat(blueSlider.intValue) / 255.0, alpha: 1.0)
+        let red = UInt8(redSlider.intValue)
+        let green = UInt8(greenSlider.intValue)
+        let blue = UInt8(blueSlider.intValue)
+        
+        colorWell.color = NSColor(deviceRed: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+        for robotEntry in robotManager.knownRobots {
+            robotEntry.value.setColor(red: red, green: green, blue: blue)
+        }
         
     }
 

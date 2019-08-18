@@ -29,7 +29,7 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
         case .unauthorized:
             break
         case .poweredOff:
-//            central.stopScan()
+            central.stopScan()
             break
         case .poweredOn:
             central.scanForPeripherals(withServices: [SPKService.RobotControl], options: nil)

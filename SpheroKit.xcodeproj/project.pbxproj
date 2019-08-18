@@ -42,6 +42,8 @@
 		489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
 		489CB1B62308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
 		489CB1B72308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
+		489CB1B92308D44B00C5FA87 /* CommandPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B82308D44B00C5FA87 /* CommandPackets.swift */; };
+		489CB1BA2308D44B00C5FA87 /* CommandPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B82308D44B00C5FA87 /* CommandPackets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,7 @@
 		489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKPeripheralDelegate.swift; sourceTree = "<group>"; };
 		489CB1AF230862F900C5FA87 /* SPKRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobot.swift; sourceTree = "<group>"; };
 		489CB1B52308A70500C5FA87 /* SPKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKManager.swift; sourceTree = "<group>"; };
+		489CB1B82308D44B00C5FA87 /* CommandPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPackets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +412,7 @@
 				489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */,
 				489CB1AF230862F900C5FA87 /* SPKRobot.swift */,
 				489CB1B52308A70500C5FA87 /* SPKManager.swift */,
+				489CB1B82308D44B00C5FA87 /* CommandPackets.swift */,
 			);
 			path = "SpheroKit Shared";
 			sourceTree = "<group>";
@@ -830,6 +834,7 @@
 			files = (
 				489CB1A723085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
 				489CB1B0230862F900C5FA87 /* SPKRobot.swift in Sources */,
+				489CB1B92308D44B00C5FA87 /* CommandPackets.swift in Sources */,
 				489CB1AA23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AD23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A423085D0600C5FA87 /* SPKService.swift in Sources */,
@@ -851,6 +856,7 @@
 			files = (
 				489CB1A823085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
 				489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */,
+				489CB1BA2308D44B00C5FA87 /* CommandPackets.swift in Sources */,
 				489CB1AB23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AE23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A523085D0600C5FA87 /* SPKService.swift in Sources */,
