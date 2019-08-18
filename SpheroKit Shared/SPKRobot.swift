@@ -17,6 +17,8 @@ import CoreBluetooth
  You do not directly create SPKRobot objects. Use the SPKManager to get the Sphero Kit robot objects.
  */
 public class SPKRobot {
+    var responseClosures = [UInt8:([UInt8]) -> Void]()
+
     var peripheral:CBPeripheral
     var _controlService: CBService?
     var controlService: CBService? {
@@ -36,16 +38,18 @@ public class SPKRobot {
             return _commandsCharacteristic
         }
     }
-    var packetSeqNum: UInt8 = 0
     
     init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
     }
 
-    func sendCommand(packet: SpheroCommandPacket) {
+    func sendCommand(packet: SpheroCommandPacket, response: (([UInt8]) -> Void)? = nil) {
         guard let commandsCharacteristic = commandsCharacteristic else {return}
-        let data = packet.dataForPacket(sequenceNumber: packetSeqNum)
-        packetSeqNum += 1
+        let data = packet.dataForPacket()
+        if response != nil {
+            let delegate = peripheral.delegate as? SPKPeripheralDelegate
+            delegate?.responseClosures[packet.commandID] = response
+        }
         
         // TODO should move this so it is only done once
         peripheral.setNotifyValue(true, for: commandsCharacteristic)
@@ -98,5 +102,16 @@ public class SPKRobot {
     */
     public func showBackLight(_ showLight: Bool) {
         sendCommand(packet: SetBackLEDBrightnessPacket(brightness: showLight ? 255 : 0))
+    }
+    
+    /**
+     Gets the current color of the rgb led
+     */
+    public func getColor(results: @escaping (_ red: UInt8, _ green: UInt8, _ blue: UInt8) -> Void)
+    {
+        sendCommand(packet: GetLEDColorPacket(), response: {bytes in
+            guard (bytes.count > 7) else {return}
+            results(bytes[5], bytes[6], bytes[7])
+        })
     }
 }

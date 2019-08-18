@@ -9,6 +9,9 @@ import Cocoa
 import SpheroKit_OSX
 
 class ViewController: NSViewController {
+    var speed: Int = 0
+    var heading: Int = 0
+
     @IBOutlet weak var connectedCountLabel: NSTextField!
     @IBOutlet weak var redTextField: NSTextField!
     @IBOutlet weak var greenTextField: NSTextField!
@@ -20,13 +23,25 @@ class ViewController: NSViewController {
     @IBOutlet weak var colorWell: NSColorWell!
 
     @IBAction func headingSliderChanged(_ sender: NSSlider) {
-        
+        heading = Int(sender.intValue)
+        for robotEntry in robotManager.knownRobots {
+            robotEntry.value.roll(heading: heading, speed: speed)
+        }
+
     }
     
     @IBAction func speedSliderChanged(_ sender: NSSlider) {
+        speed = Int(sender.intValue)
+        for robotEntry in robotManager.knownRobots {
+            robotEntry.value.roll(heading: heading, speed: speed)
+        }
+
         
     }
     @IBAction func showBackLightButton(_ sender: NSButton) {
+        for robotEntry in robotManager.knownRobots {
+            robotEntry.value.showBackLight(sender.state == .on)
+        }
     }
     @IBAction func setRed(_ sender: NSSlider) {
         redTextField.cell?.title = String(sender.intValue)

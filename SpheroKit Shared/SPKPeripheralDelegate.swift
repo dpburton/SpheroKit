@@ -9,6 +9,7 @@ import Foundation
 import CoreBluetooth
 
 class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
+    var responseClosures = [UInt8:([UInt8]) -> Void]()
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
@@ -57,6 +58,13 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let value = characteristic.value else { return }
+        let bytes = [UInt8](value)
+        if bytes.count > 4 {
+            let command = bytes[3]
+            if let closure = responseClosures[command] {
+                closure(bytes)
+            }
+        }
         let v = value as NSData
         print(v.description)
     }
