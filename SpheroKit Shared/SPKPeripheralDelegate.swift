@@ -62,6 +62,7 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        // TODO need to verify the packet should be ffff seq command length data checksum
         guard let value = characteristic.value else { return }
         let bytes = [UInt8](value)
         if bytes.count > responseCommandIndex {

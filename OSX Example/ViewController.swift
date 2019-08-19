@@ -9,6 +9,7 @@ import Cocoa
 import SpheroKit_OSX
 
 class ViewController: NSViewController {
+    var robotManager = SPKManager.sharedInstance
     var speed: Int = 0
     var heading: Int = 0
 
@@ -84,9 +85,6 @@ class ViewController: NSViewController {
         
     }
 
-
-    var robotManager = SPKManager.sharedInstance
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         robotManager.scanForRobots { [weak self] in

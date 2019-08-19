@@ -54,6 +54,7 @@ public class SPKRobot {
         // TODO should move this so it is only done once
         peripheral.setNotifyValue(true, for: commandsCharacteristic)
         peripheral.writeValue(data, for: commandsCharacteristic, type: .withResponse)
+        print(data.description)
     }
 
     /**
