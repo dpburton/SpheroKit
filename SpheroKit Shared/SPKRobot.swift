@@ -18,7 +18,7 @@ import CoreBluetooth
  */
 public class SPKRobot {
     var responseClosures = [UInt8:([UInt8]) -> Void]()
-
+    var seqNum = UInt8(0)
     var peripheral:CBPeripheral
     var _controlService: CBService?
     var controlService: CBService? {
@@ -45,16 +45,17 @@ public class SPKRobot {
 
     func sendCommand(packet: SpheroCommandPacket, response: (([UInt8]) -> Void)? = nil) {
         guard let commandsCharacteristic = commandsCharacteristic else {return}
-        let data = packet.dataForPacket()
+        let data = packet.dataForPacket(sequenceNumber: seqNum)
+        seqNum = seqNum == 255 ? 0 : seqNum + 1
         if response != nil {
+            // TODO change this to a call to set the response closure
             let delegate = peripheral.delegate as? SPKPeripheralDelegate
-            delegate?.responseClosures[packet.commandID] = response
+            delegate?.responseClosures[seqNum] = response
         }
         
         // TODO should move this so it is only done once
         peripheral.setNotifyValue(true, for: commandsCharacteristic)
         peripheral.writeValue(data, for: commandsCharacteristic, type: .withResponse)
-        print(data.description)
     }
 
     /**

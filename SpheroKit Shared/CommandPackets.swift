@@ -9,6 +9,7 @@ import Foundation
 import CoreBluetooth
 
 public protocol CommandPacket {
+
     var answer: Bool { get }
     var resetTimeout: Bool { get }
     var deviceID: UInt8 { get }
@@ -36,7 +37,6 @@ extension CommandPacket {
         
         return value
     }
-    
     internal func dataForPacket(sequenceNumber: UInt8 = 0) -> Data {
         let payloadLength = payload?.count ?? 0
         var zero: UInt8 = 0
@@ -46,7 +46,7 @@ extension CommandPacket {
         data[1] = sop2
         data[2] = deviceID
         data[3] = commandID
-        data[4] = commandID
+        data[4] = sequenceNumber
         data[5] = UInt8(payloadLength + 1)
         
         if let payload = payload {
@@ -164,24 +164,4 @@ public struct GetLEDColorPacket: SpheroCommandPacket {
     
 }
 
-extension CBPeripheral {
-    var controlService: CBService? {
-        get {
-            return serviceFor(SPKService.RobotControl)
-        }
-    }
-    var commandsCharacteristic:CBCharacteristic? {
-        get {
-            return controlService?.characteristicFor(SPKCharacteristic.Command)
-        }
-    }
 
-    func sendCommand(packet: SpheroCommandPacket, sequenceNumber: UInt8 = 0) {
-        guard let commandsCharacteristic = commandsCharacteristic else {return}
-        let data = packet.dataForPacket(sequenceNumber: sequenceNumber)
-
-        // TODO should move this so it is only done once
-        setNotifyValue(true, for: commandsCharacteristic)
-        writeValue(data, for: commandsCharacteristic, type: .withResponse)
-    }
-}

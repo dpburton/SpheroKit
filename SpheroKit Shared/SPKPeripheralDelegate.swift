@@ -9,10 +9,8 @@ import Foundation
 import CoreBluetooth
 
 class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
-    // TODO need to add the response format here. According to the documents it is supposed
-    // to return the sequence number, but the reply I get back from my BB-8 does not return the
-    // sequence number in the reply but the command id is there so I'll use that for now.
-    let responseCommandIndex = 3
+    // TODO need to add the response format here. 
+    let responseSeqIndex = 3
     
     var responseClosures = [UInt8:([UInt8]) -> Void]()
     
@@ -65,8 +63,8 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
         // TODO need to verify the packet should be ffff seq command length data checksum
         guard let value = characteristic.value else { return }
         let bytes = [UInt8](value)
-        if bytes.count > responseCommandIndex {
-            let command = bytes[responseCommandIndex]
+        if bytes.count > responseSeqIndex {
+            let command = bytes[responseSeqIndex]
             if let closure = responseClosures[command] {
                 closure(bytes)
             }
