@@ -32,7 +32,7 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
             central.stopScan()
             break
         case .poweredOn:
-            central.scanForPeripherals(withServices: [SPKService.RobotControl], options: nil)
+            central.scanForPeripherals(withServices: [SPKService.RobotControl, SPKService.APIv2ControlService], options: nil)
         @unknown default:
             print("central.state is \(central.state)")
         }
@@ -46,7 +46,7 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = peripheralDelegate
-        peripheral.discoverServices([SPKService.BLEService, SPKService.RobotControl])
+        peripheral.discoverServices([SPKService.BLEService, SPKService.RobotControl, SPKService.APIv2ControlService, SPKService.NordicDfuService, SPKService.BatteryService])
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
