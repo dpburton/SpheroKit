@@ -25,7 +25,7 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
                 peripheral.discoverCharacteristics([SPKCharacteristic.AntiDoS, SPKCharacteristic.TXPower, SPKCharacteristic.Wake], for: service)
             case SPKService.RobotControl:
                 peripheral.discoverCharacteristics([SPKCharacteristic.Command, SPKCharacteristic.Response], for: service)
-            case SPKService.APIv2ControlService:
+            case SPKService.APIv2ControlService, SPKService.NordicDfuService:
                 peripheral.discoverCharacteristics([SPKCharacteristic.apiV2Characteristic, SPKCharacteristic.apiV2Characteristic2, SPKCharacteristic.dfuControlCharacteristic, SPKCharacteristic.dfuInfoCharacteristic, SPKCharacteristic.antiDoSCharacteristic, SPKCharacteristic.subsCharacteristic], for: service)
             default:
                 // this is a service we aren't using
@@ -43,14 +43,11 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
         case SPKService.RobotControl:
             guard let command = service.characteristicFor(SPKCharacteristic.Response) else {return}
             peripheral.setNotifyValue(true, for: command)
-        case SPKService.APIv2ControlService:
+        case SPKService.NordicDfuService:
             if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
                 peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
             }
         default:
-            if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
-                peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
-            }
             print(service.characteristics.debugDescription)
             break
         }
