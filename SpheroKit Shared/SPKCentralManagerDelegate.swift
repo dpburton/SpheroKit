@@ -32,7 +32,7 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
             central.stopScan()
             break
         case .poweredOn:
-            central.scanForPeripherals(withServices: [SPKService.RobotControl, SPKService.APIv2ControlService], options: nil)
+            central.scanForPeripherals(withServices: [SPKService.RobotControl, SPKService.APIv2ControlService, SPKService.NordicDfuService], options: nil)
         @unknown default:
             print("central.state is \(central.state)")
         }
@@ -50,5 +50,6 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("disconnected from \(peripheral.debugDescription) error:\(error?.localizedDescription ?? "unknown")")
     }
 }

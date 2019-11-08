@@ -19,11 +19,14 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         for service in services {
+            print(service.debugDescription)
             switch service.uuid {
             case SPKService.BLEService:
                 peripheral.discoverCharacteristics([SPKCharacteristic.AntiDoS, SPKCharacteristic.TXPower, SPKCharacteristic.Wake], for: service)
             case SPKService.RobotControl:
                 peripheral.discoverCharacteristics([SPKCharacteristic.Command, SPKCharacteristic.Response], for: service)
+            case SPKService.APIv2ControlService:
+                peripheral.discoverCharacteristics([SPKCharacteristic.apiV2Characteristic, SPKCharacteristic.apiV2Characteristic2, SPKCharacteristic.dfuControlCharacteristic, SPKCharacteristic.dfuInfoCharacteristic, SPKCharacteristic.antiDoSCharacteristic, SPKCharacteristic.subsCharacteristic], for: service)
             default:
                 // this is a service we aren't using
                 continue
@@ -32,12 +35,24 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        if service.uuid == SPKService.BLEService {
+        print(service.characteristics.debugDescription)
+        switch service.uuid {
+        case SPKService.BLEService:
             guard let antiDoS = service.characteristicFor(SPKCharacteristic.AntiDoS) else {return}
-                peripheral.writeValue("011i3".data(using: String.Encoding.ascii)!, for: antiDoS, type: .withResponse)
-        } else {
+                peripheral.writeValue("011i3".data(using: .ascii)!, for: antiDoS, type: .withResponse)
+        case SPKService.RobotControl:
             guard let command = service.characteristicFor(SPKCharacteristic.Response) else {return}
             peripheral.setNotifyValue(true, for: command)
+        case SPKService.APIv2ControlService:
+            if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
+                peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
+            }
+        default:
+            if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
+                peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
+            }
+            print(service.characteristics.debugDescription)
+            break
         }
     }
     
