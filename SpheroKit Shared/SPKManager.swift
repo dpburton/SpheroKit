@@ -24,8 +24,8 @@ public class SPKManager {
     var knownRobotsChanged: (() -> Void)?
     lazy var centralManagerDelegate = SPKCentralManagerDelegate(foundPeripheral: {[weak self] peripheral in
         
-            var robot = SPKRobot(peripheral: peripheral)
-            self?.knownRobots[robot.peripheral.identifier] = robot
+        var robot = peripheral.serviceFor(SPKService.RobotControl) == nil ? SPKRobotV2(peripheral: peripheral) as SPKRobot: SPKRobotV1(peripheral: peripheral) as SPKRobot
+            self?.knownRobots[robot.peripheral.identifier] = robot as SPKRobot
             self?.knownRobotsChanged?()
         })
     lazy var centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: nil)
@@ -47,9 +47,9 @@ public class SPKManager {
         centralManager.stopScan()
     }
     
-    func foundRobot(peripheral: CBPeripheral) {
-        let robot = SPKRobot(peripheral: peripheral)
-        knownRobots[robot.peripheral.identifier] = robot
-        knownRobotsChanged?()
-    }
+//    func foundRobot(peripheral: CBPeripheral) {
+//        let robot = SPKRobotV1(peripheral: peripheral)
+//        knownRobots[robot.peripheral.identifier] = robot
+//        knownRobotsChanged?()
+//    }
 }

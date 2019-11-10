@@ -9,7 +9,6 @@ import Foundation
 import CoreBluetooth
 
 public protocol CommandPacket {
-
     var answer: Bool { get }
     var resetTimeout: Bool { get }
     var deviceID: UInt8 { get }
@@ -37,6 +36,7 @@ extension CommandPacket {
         
         return value
     }
+    
     internal func dataForPacket(sequenceNumber: UInt8 = 0) -> Data {
         let payloadLength = payload?.count ?? 0
         var zero: UInt8 = 0
@@ -46,7 +46,7 @@ extension CommandPacket {
         data[1] = sop2
         data[2] = deviceID
         data[3] = commandID
-        data[4] = sequenceNumber
+        data[4] = commandID
         data[5] = UInt8(payloadLength + 1)
         
         if let payload = payload {
@@ -64,6 +64,36 @@ extension CommandPacket {
         data.append(Data([checksum]))
         
         return data
+    }
+
+    internal func dataForPacketV2(sequenceNumber: UInt8 = 0) -> Data {
+        let payloadLength = payload?.count ?? 0
+        var zero: UInt8 = 0
+        var data = Data(bytes: &zero, count: 5)
+
+        data[0] = 0x8d
+        data[1] = 0x0a // flags 0x02 - request response, 0x08 - reset inactivity timeout
+        data[2] = deviceID
+        data[3] = commandID
+        data[4] = sequenceNumber
+
+        if let payload = payload {
+            data.append(payload)
+        }
+
+        let checksumTarget = data[2 ..< data.count]
+
+        var checksum: UInt8 = 0
+        for byte in checksumTarget {
+            checksum = checksum &+ byte
+        }
+        checksum = ~checksum
+
+        data.append(Data([checksum]))
+        data.append(0xd8)
+
+        return data
+
     }
 }
 
@@ -158,10 +188,74 @@ public struct SetLEDColorPacket: SpheroCommandPacket {
     }
 }
 
+public struct SetLEDColorPacketV2: CommandPacket {
+    public let commandID: UInt8 = 0x0e
+    public let deviceID: UInt8 = 0x1a
+    
+    public var red: UInt8
+    public var green: UInt8
+    public var blue: UInt8
+    public var save: Bool
+
+    public init(red: UInt8, green: UInt8, blue: UInt8, save: Bool = false) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.save = save
+    }
+
+    public var payload: Data? {
+        let data = Data([0x00, 0x07, red, green, blue])
+        return data
+    }
+}
+
 public struct GetLEDColorPacket: SpheroCommandPacket {
     public let commandID: UInt8 = 0x22
     public var payload: Data?
     
 }
 
+public struct DriveAsRC: SpheroCommandPacket {
+    public let commandID: UInt8 = 0x02
 
+    public var speed: UInt16
+    public var heading: UInt16
+
+    public init(speed: UInt16, heading: UInt16) {
+        self.speed = speed
+        self.heading = heading
+    }
+    public var payload: Data? {
+        return speed.data + heading.data
+    }
+}
+
+extension UInt16 {
+    var data: Data {
+        get {
+            return withUnsafeBytes(of: self.littleEndian) { Data($0)}
+        }
+    }
+}
+extension CBPeripheral {
+    var controlService: CBService? {
+        get {
+            return serviceFor(SPKService.RobotControl)
+        }
+    }
+    var commandsCharacteristic:CBCharacteristic? {
+        get {
+            return controlService?.characteristicFor(SPKCharacteristic.Command)
+        }
+    }
+
+    func sendCommand(packet: SpheroCommandPacket, sequenceNumber: UInt8 = 0) {
+        guard let commandsCharacteristic = commandsCharacteristic else {return}
+        let data = packet.dataForPacket(sequenceNumber: sequenceNumber)
+
+        // TODO should move this so it is only done once
+        setNotifyValue(true, for: commandsCharacteristic)
+        writeValue(data, for: commandsCharacteristic, type: .withResponse)
+    }
+}

@@ -38,8 +38,8 @@
 		489CB1AB23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */; };
 		489CB1AD23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */; };
 		489CB1AE23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */; };
-		489CB1B0230862F900C5FA87 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
-		489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
+		489CB1B0230862F900C5FA87 /* SPKRobotV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobotV1.swift */; };
+		489CB1B1230862F900C5FA87 /* SPKRobotV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobotV1.swift */; };
 		489CB1B62308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
 		489CB1B72308A70500C5FA87 /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
 		489CB1B92308D44B00C5FA87 /* CommandPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B82308D44B00C5FA87 /* CommandPackets.swift */; };
@@ -62,7 +62,7 @@
 		ED4E3D64236B8CF100BEBCEC /* SPKCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1A623085E5500C5FA87 /* SPKCharacteristic.swift */; };
 		ED4E3D65236B8CF500BEBCEC /* SPKCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */; };
 		ED4E3D66236B8CF900BEBCEC /* SPKPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */; };
-		ED4E3D67236B8D0300BEBCEC /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobot.swift */; };
+		ED4E3D67236B8D0300BEBCEC /* SPKRobotV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1AF230862F900C5FA87 /* SPKRobotV1.swift */; };
 		ED4E3D68236B8D3400BEBCEC /* SPKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B52308A70500C5FA87 /* SPKManager.swift */; };
 		ED4E3D69236B8D3E00BEBCEC /* CommandPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489CB1B82308D44B00C5FA87 /* CommandPackets.swift */; };
 		ED4E3D70236C6C5500BEBCEC /* BB-9E Remote WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ED4E3D6F236C6C5500BEBCEC /* BB-9E Remote WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -74,6 +74,12 @@
 		ED4E3D88236C6C5600BEBCEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED4E3D87236C6C5600BEBCEC /* Assets.xcassets */; };
 		ED4E3D96236C700300BEBCEC /* SpheroKit_WatchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4E3D56236B8CD900BEBCEC /* SpheroKit_WatchOS.framework */; };
 		ED4E3D97236C700300BEBCEC /* SpheroKit_WatchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED4E3D56236B8CD900BEBCEC /* SpheroKit_WatchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED8E8D0C2375B47C003739E2 /* SPKRobotV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0B2375B47C003739E2 /* SPKRobotV2.swift */; };
+		ED8E8D0D2375B47C003739E2 /* SPKRobotV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0B2375B47C003739E2 /* SPKRobotV2.swift */; };
+		ED8E8D0E2375B47C003739E2 /* SPKRobotV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0B2375B47C003739E2 /* SPKRobotV2.swift */; };
+		ED8E8D102375B4D2003739E2 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0F2375B4D2003739E2 /* SPKRobot.swift */; };
+		ED8E8D112375B4D2003739E2 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0F2375B4D2003739E2 /* SPKRobot.swift */; };
+		ED8E8D122375B4D2003739E2 /* SPKRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8E8D0F2375B4D2003739E2 /* SPKRobot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,7 +331,7 @@
 		489CB1A623085E5500C5FA87 /* SPKCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKCharacteristic.swift; sourceTree = "<group>"; };
 		489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKCentralManagerDelegate.swift; sourceTree = "<group>"; };
 		489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKPeripheralDelegate.swift; sourceTree = "<group>"; };
-		489CB1AF230862F900C5FA87 /* SPKRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobot.swift; sourceTree = "<group>"; };
+		489CB1AF230862F900C5FA87 /* SPKRobotV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobotV1.swift; sourceTree = "<group>"; };
 		489CB1B52308A70500C5FA87 /* SPKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKManager.swift; sourceTree = "<group>"; };
 		489CB1B82308D44B00C5FA87 /* CommandPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPackets.swift; sourceTree = "<group>"; };
 		ED4E3D1E236B84EA00BEBCEC /* WatchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,6 +362,8 @@
 		ED4E3D85236C6C5600BEBCEC /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		ED4E3D87236C6C5600BEBCEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED4E3D89236C6C5700BEBCEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED8E8D0B2375B47C003739E2 /* SPKRobotV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobotV2.swift; sourceTree = "<group>"; };
+		ED8E8D0F2375B4D2003739E2 /* SPKRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPKRobot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -612,9 +620,11 @@
 				489CB1A623085E5500C5FA87 /* SPKCharacteristic.swift */,
 				489CB1A923085EDF00C5FA87 /* SPKCentralManagerDelegate.swift */,
 				489CB1AC23085FE300C5FA87 /* SPKPeripheralDelegate.swift */,
-				489CB1AF230862F900C5FA87 /* SPKRobot.swift */,
+				489CB1AF230862F900C5FA87 /* SPKRobotV1.swift */,
 				489CB1B52308A70500C5FA87 /* SPKManager.swift */,
 				489CB1B82308D44B00C5FA87 /* CommandPackets.swift */,
+				ED8E8D0B2375B47C003739E2 /* SPKRobotV2.swift */,
+				ED8E8D0F2375B4D2003739E2 /* SPKRobot.swift */,
 			);
 			path = "SpheroKit Shared";
 			sourceTree = "<group>";
@@ -1322,12 +1332,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				489CB1A723085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
-				489CB1B0230862F900C5FA87 /* SPKRobot.swift in Sources */,
+				ED8E8D102375B4D2003739E2 /* SPKRobot.swift in Sources */,
+				489CB1B0230862F900C5FA87 /* SPKRobotV1.swift in Sources */,
 				489CB1B92308D44B00C5FA87 /* CommandPackets.swift in Sources */,
 				489CB1AA23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AD23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A423085D0600C5FA87 /* SPKService.swift in Sources */,
 				489CB1B62308A70500C5FA87 /* SPKManager.swift in Sources */,
+				ED8E8D0C2375B47C003739E2 /* SPKRobotV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,12 +1356,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				489CB1A823085E5500C5FA87 /* SPKCharacteristic.swift in Sources */,
-				489CB1B1230862F900C5FA87 /* SPKRobot.swift in Sources */,
+				ED8E8D112375B4D2003739E2 /* SPKRobot.swift in Sources */,
+				489CB1B1230862F900C5FA87 /* SPKRobotV1.swift in Sources */,
 				489CB1BA2308D44B00C5FA87 /* CommandPackets.swift in Sources */,
 				489CB1AB23085EDF00C5FA87 /* SPKCentralManagerDelegate.swift in Sources */,
 				489CB1AE23085FE300C5FA87 /* SPKPeripheralDelegate.swift in Sources */,
 				489CB1A523085D0600C5FA87 /* SPKService.swift in Sources */,
 				489CB1B72308A70500C5FA87 /* SPKManager.swift in Sources */,
+				ED8E8D0D2375B47C003739E2 /* SPKRobotV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,12 +1392,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4E3D63236B8CEC00BEBCEC /* SPKService.swift in Sources */,
-				ED4E3D67236B8D0300BEBCEC /* SPKRobot.swift in Sources */,
+				ED8E8D122375B4D2003739E2 /* SPKRobot.swift in Sources */,
+				ED4E3D67236B8D0300BEBCEC /* SPKRobotV1.swift in Sources */,
 				ED4E3D69236B8D3E00BEBCEC /* CommandPackets.swift in Sources */,
 				ED4E3D68236B8D3400BEBCEC /* SPKManager.swift in Sources */,
 				ED4E3D64236B8CF100BEBCEC /* SPKCharacteristic.swift in Sources */,
 				ED4E3D65236B8CF500BEBCEC /* SPKCentralManagerDelegate.swift in Sources */,
 				ED4E3D66236B8CF900BEBCEC /* SPKPeripheralDelegate.swift in Sources */,
+				ED8E8D0E2375B47C003739E2 /* SPKRobotV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

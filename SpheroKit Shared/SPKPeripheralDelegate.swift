@@ -9,8 +9,7 @@ import Foundation
 import CoreBluetooth
 
 class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
-    // TODO need to add the response format here. 
-    let responseSeqIndex = 3
+    let responseCommandIndex = 3
     
     var responseClosures = [UInt8:([UInt8]) -> Void]()
     
@@ -23,7 +22,7 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
                 peripheral.discoverCharacteristics([SPKCharacteristic.AntiDoS, SPKCharacteristic.TXPower, SPKCharacteristic.Wake], for: service)
             case SPKService.RobotControl:
                 peripheral.discoverCharacteristics([SPKCharacteristic.Command, SPKCharacteristic.Response], for: service)
-            case SPKService.APIv2ControlService:
+            case SPKService.APIv2ControlService, SPKService.NordicDfuService:
                 peripheral.discoverCharacteristics([SPKCharacteristic.apiV2Characteristic, SPKCharacteristic.apiV2Characteristic2, SPKCharacteristic.dfuControlCharacteristic, SPKCharacteristic.dfuInfoCharacteristic, SPKCharacteristic.antiDoSCharacteristic, SPKCharacteristic.subsCharacteristic], for: service)
             default:
                 // this is a service we aren't using
@@ -41,14 +40,11 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
         case SPKService.RobotControl:
             guard let command = service.characteristicFor(SPKCharacteristic.Response) else {return}
             peripheral.setNotifyValue(true, for: command)
-        case SPKService.APIv2ControlService:
+        case SPKService.NordicDfuService:
             if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
                 peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
             }
         default:
-            if let antiDoS = service.characteristicFor(SPKCharacteristic.antiDoSCharacteristic) {
-                peripheral.writeValue("usetheforce...band".data(using: .ascii)!, for: antiDoS, type: .withResponse)
-            }
             print(service.characteristics.debugDescription)
             break
         }
@@ -69,17 +65,18 @@ class SPKPeripheralDelegate: NSObject, CBPeripheralDelegate {
             break
         case SPKCharacteristic.Command:
             break
+        case SPKCharacteristic.antiDoSCharacteristic:
+            break
         default:
             break
         }
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        // TODO need to verify the packet should be ffff seq command length data checksum
         guard let value = characteristic.value else { return }
         let bytes = [UInt8](value)
-        if bytes.count > responseSeqIndex {
-            let command = bytes[responseSeqIndex]
+        if bytes.count > responseCommandIndex {
+            let command = bytes[responseCommandIndex]
             if let closure = responseClosures[command] {
                 closure(bytes)
             }
