@@ -20,9 +20,16 @@ enum SPKCharacteristic {
 
     // v2 Characteristic
     static let apiV2Characteristic =  CBUUID(string: "00010002-574f-4f20-5370-6865726f2121")
+    static let apiV2Characteristic2 =  CBUUID(string: "00010003-574f-4f20-5370-6865726f2121")
     static let dfuControlCharacteristic =  CBUUID(string: "00020002-574f-4f20-5370-6865726f2121")
     static let dfuInfoCharacteristic =  CBUUID(string: "00020004-574f-4f20-5370-6865726f2121")
     static let antiDoSCharacteristic =  CBUUID(string: "00020005-574f-4f20-5370-6865726f2121")
-    static let subsCharacteristic =  CBUUID(string: "00020003-574f-4f20-53706865726f2121")
+    static let subsCharacteristic =  CBUUID(string: "00020003-574f-4f20-5370-6865726f2121")
+
+    // Battery service
+    static let BatteryLevel = CBUUID(string:"2A19")
+    static let BatteryLevelState = CBUUID(string:"2A1B")
+    static let BatteryPowerState = CBUUID(string:"2A1A")
+
 }
 
