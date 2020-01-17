@@ -9,6 +9,8 @@ import Foundation
 import CoreBluetooth
 
 class SPKRobotV2 : SPKRobot {
+    var connected: Bool
+    
     var responseClosures = [UInt8:([UInt8]) -> Void]()
 
     var peripheral:CBPeripheral
@@ -33,6 +35,7 @@ class SPKRobotV2 : SPKRobot {
 
     init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
+        connected = false
     }
 
 

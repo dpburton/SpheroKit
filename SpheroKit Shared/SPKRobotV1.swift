@@ -17,6 +17,8 @@ import CoreBluetooth
  You do not directly create SPKRobot objects. Use the SPKManager to get the Sphero Kit robot objects.
  */
 class SPKRobotV1 : SPKRobot {
+    var connected: Bool
+    
     var responseClosures = [UInt8:([UInt8]) -> Void]()
 
     var peripheral:CBPeripheral
@@ -41,6 +43,7 @@ class SPKRobotV1 : SPKRobot {
 
     init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
+        connected = false
     }
 
 

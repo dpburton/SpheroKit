@@ -88,7 +88,11 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         robotManager.scanForRobots { [weak self] in
-            self?.connectedCountLabel.cell?.title = "\(self?.robotManager.knownRobots.count ?? 0)"
+            guard let self = self else {return}
+            self.connectedCountLabel.cell?.title = "\(self.robotManager.knownRobots.count)"
+            for (_, value) in self.robotManager.knownRobots {
+                self.robotManager.connectToRobot(value)
+            }
         }
     }
 

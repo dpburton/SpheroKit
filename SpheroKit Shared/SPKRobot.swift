@@ -10,8 +10,8 @@ import CoreBluetooth
 
 public protocol SPKRobot {
 
-    var peripheral:CBPeripheral { get set }
-
+    var peripheral: CBPeripheral { get set }
+    var connected: Bool {get set}
     /**
      Sets the color of the main rgb led
      - parameter red: red component

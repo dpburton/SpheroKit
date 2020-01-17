@@ -22,14 +22,27 @@ public class SPKManager {
     public var knownRobots = [UUID:SPKRobot]()
 
     var knownRobotsChanged: (() -> Void)?
-    lazy var centralManagerDelegate = SPKCentralManagerDelegate(foundPeripheral: {[weak self] peripheral in
-        
-        var robot = peripheral.serviceFor(SPKService.RobotControl) == nil ? SPKRobotV2(peripheral: peripheral) as SPKRobot: SPKRobotV1(peripheral: peripheral) as SPKRobot
-            self?.knownRobots[robot.peripheral.identifier] = robot as SPKRobot
-            self?.knownRobotsChanged?()
-        })
+    lazy var centralManagerDelegate = SPKCentralManagerDelegate(
+        foundPeripheral: {[weak self] peripheral in self?.foundPeriferal(peripheral)},
+        connectedPeripheral: {[weak self] peripheral in self?.connectedPeripheral(peripheral)},
+        disconnectedPeripheral: {[weak self] peripheral in self?.disconnectedPeripheral(peripheral)})
+
     lazy var centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: nil)
-    
+
+    private func foundPeriferal(_ peripheral: CBPeripheral) {
+        let robot = peripheral.serviceFor(SPKService.RobotControl) == nil ? SPKRobotV2(peripheral: peripheral) as SPKRobot : SPKRobotV1(peripheral: peripheral) as SPKRobot
+            self.knownRobots[robot.peripheral.identifier] = robot
+            self.knownRobotsChanged?()
+    }
+
+    private func connectedPeripheral(_ peripheral: CBPeripheral) {
+        knownRobots[peripheral.identifier]?.connected = true
+    }
+
+    private func disconnectedPeripheral(_ peripheral: CBPeripheral) {
+        knownRobots[peripheral.identifier]?.connected = false
+    }
+
     /**
      Until you scan for robots the list of known robots will be empty
      - parameter knownRobotsChanged: this is called when a robot is added or removed from the list of known robots
@@ -39,7 +52,13 @@ public class SPKManager {
         self.knownRobotsChanged = knownRobotsChanged
         _ = centralManager
     }
-    
+
+    public func connectToRobot(_ robot: SPKRobot)
+    {
+        if !robot.connected {
+            centralManager.connect(robot.peripheral)
+        }
+    }
     /**
         Call when you no longer need to find new robots
      */

@@ -7,6 +7,7 @@
 
 import UIKit
 import SpheroKit_iOS
+import MetricKit
 
 class ViewController: UIViewController {
     var robotManager = SPKManager.sharedInstance
@@ -15,8 +16,7 @@ class ViewController: UIViewController {
     var blue: UInt8 = 0
     var heading = 0
     var speed = 0
-    
-    
+
     @IBOutlet var robotCountLabel: UILabel!
     @IBOutlet weak var backlightSwitch: UISwitch!
     @IBOutlet weak var redSlider: UISlider!
@@ -28,8 +28,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         robotManager.scanForRobots { [weak self] in
-            self?.robotCountLabel.text = "\(self?.robotManager.knownRobots.count ?? 0)"
-    }
+            guard let self = self else {return}
+            self.robotCountLabel.text = "\(self.robotManager.knownRobots.count)"
+            for (_, value) in self.robotManager.knownRobots {
+                self.robotManager.connectToRobot(value)
+            }
+        }
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
@@ -58,7 +62,6 @@ class ViewController: UIViewController {
         for robotEntry in robotManager.knownRobots {
             robotEntry.value.roll(heading: heading, speed: speed)
         }
-
     }
     
     @IBAction func speedSliderChanged(_ sender: UISlider) {
@@ -74,8 +77,6 @@ class ViewController: UIViewController {
             robotEntry.value.setColor(red: red, green: green, blue: blue)
         }
     }
-    
-    
-    
+
 }
 

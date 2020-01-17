@@ -12,10 +12,14 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     
     var knownRobots = [UUID:SPKRobot]()
     var foundPeripheral: ((CBPeripheral) -> Void)
+    var connectedPeripheral: ((CBPeripheral) -> Void)
+    var disconnectedPeripheral: ((CBPeripheral) -> Void)
     lazy var peripheralDelegate = SPKPeripheralDelegate()
     
-    init(foundPeripheral: @escaping (CBPeripheral) -> Void) {
+    init(foundPeripheral: @escaping (CBPeripheral) -> Void, connectedPeripheral: (@escaping (CBPeripheral) -> Void), disconnectedPeripheral: @escaping (CBPeripheral) -> Void) {
         self.foundPeripheral = foundPeripheral
+        self.connectedPeripheral = connectedPeripheral
+        self.disconnectedPeripheral = disconnectedPeripheral
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -40,16 +44,17 @@ class SPKCentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         foundPeripheral(peripheral)
-        // hmm maybe I don't want to connect here
-        central.connect(peripheral, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = peripheralDelegate
         peripheral.discoverServices([SPKService.BLEService, SPKService.RobotControl, SPKService.APIv2ControlService, SPKService.NordicDfuService, SPKService.BatteryService])
+        print("Connected to ", peripheral)
+        connectedPeripheral(peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("disconnected from \(peripheral.debugDescription) error:\(error?.localizedDescription ?? "unknown")")
+        disconnectedPeripheral(peripheral)
     }
 }

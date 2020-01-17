@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -710,7 +711,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-kf-Dep">
-                                <rect key="frame" x="155" y="217" width="96" height="20"/>
+                                <rect key="frame" x="155" y="218" width="96" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="QqM-dK-1w7"/>
                                 </constraints>
@@ -720,21 +721,21 @@
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="So1-VT-s5d">
-                                <rect key="frame" x="155" y="193" width="96" height="20"/>
+                                <rect key="frame" x="155" y="195" width="96" height="19"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="255" tickMarkPosition="above" sliderType="linear" id="n3z-vg-IMv"/>
                                 <connections>
                                     <action selector="setGreen:" target="XfG-lQ-9wD" id="03Q-0I-OFE"/>
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZ9-Ys-RXL">
-                                <rect key="frame" x="155" y="169" width="96" height="19"/>
+                                <rect key="frame" x="155" y="172" width="96" height="19"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="255" tickMarkPosition="above" sliderType="linear" id="m2D-x4-uKN"/>
                                 <connections>
                                     <action selector="setBlue:" target="XfG-lQ-9wD" id="5Z3-eA-U9z"/>
                                 </connections>
                             </slider>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N7Y-nW-IUc">
-                                <rect key="frame" x="87" y="216" width="62" height="22"/>
+                                <rect key="frame" x="87" y="217" width="62" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="62" id="ejE-hN-IW9"/>
                                 </constraints>
@@ -749,7 +750,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WFh-f0-2uu">
-                                <rect key="frame" x="87" y="192" width="62" height="22"/>
+                                <rect key="frame" x="87" y="194" width="62" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" usesSingleLineMode="YES" id="G3E-mg-JII">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="sSZ-ms-6kH"/>
                                     <font key="font" metaFont="system"/>
@@ -761,7 +762,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dbb-cr-ESS">
-                                <rect key="frame" x="87" y="167" width="62" height="23"/>
+                                <rect key="frame" x="87" y="170" width="62" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" usesSingleLineMode="YES" id="Q8y-MT-BVf">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="SEF-KN-GOc"/>
                                     <font key="font" metaFont="system"/>
@@ -773,7 +774,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xYd-9a-QHr">
-                                <rect key="frame" x="36" y="219" width="28" height="16"/>
+                                <rect key="frame" x="36" y="220" width="28" height="15"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Red" id="nvD-mV-2Kx">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -781,7 +782,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tul-wp-RdG">
-                                <rect key="frame" x="36" y="196" width="41" height="14"/>
+                                <rect key="frame" x="36" y="197" width="41" height="15"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Green" id="28t-rF-g4g">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -789,7 +790,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iB0-qy-MLs">
-                                <rect key="frame" x="42" y="170" width="31" height="17"/>
+                                <rect key="frame" x="42" y="173" width="31" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Blue" id="PWs-DX-BYb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -797,7 +798,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvh-pN-bJP">
-                                <rect key="frame" x="50" y="113" width="13" height="17"/>
+                                <rect key="frame" x="50" y="117" width="13" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="6ym-rc-fEa">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -810,20 +811,20 @@
                                     <constraint firstAttribute="height" constant="23" id="Tym-rW-GcZ"/>
                                     <constraint firstAttribute="width" constant="44" id="YEx-0e-D2C"/>
                                 </constraints>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" red="0.025166839361190796" green="0.60356569290161133" blue="0.73695880174636841" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="setColorFromWell:" target="XfG-lQ-9wD" id="j4f-8n-jGX"/>
                                 </connections>
                             </colorWell>
                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWC-Jq-U2k">
-                                <rect key="frame" x="139" y="103" width="28" height="30"/>
+                                <rect key="frame" x="139" y="106" width="28" height="30"/>
                                 <sliderCell key="cell" alignment="left" maxValue="360" allowsTickMarkValuesOnly="YES" sliderType="circular" id="Cpb-j1-o1Q"/>
                                 <connections>
                                     <action selector="headingSliderChanged:" target="XfG-lQ-9wD" id="5U7-I6-WeF"/>
                                 </connections>
                             </slider>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rod-o8-wDq">
-                                <rect key="frame" x="173" y="109" width="86" height="18"/>
+                                <rect key="frame" x="173" y="112" width="86" height="18"/>
                                 <buttonCell key="cell" type="check" title="Back Light" bezelStyle="regularSquare" imagePosition="left" inset="2" id="VdZ-r4-pwF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
